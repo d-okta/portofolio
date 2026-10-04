@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diandra Oktansyah Satria Mandala — Portofolio</title>
+  <meta name="description" content="Portofolio Diandra Oktansyah Satria Mandala — UI/UX Designer, Video Editor, Software Engineer. Lihat karya, layanan, dan cara menghubungi." />
+  <meta name="author" content="Diandra Oktansyah Satria Mandala" />
+  <meta name="theme-color" content="#4F46E5" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%234F46E5'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>D</text></svg>" />
+</head>
+<body>
+  <a class="skip-link" href="#beranda" data-i18n="a11y.skip">Lewati ke konten utama</a>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="#beranda" class="logo" aria-label="Diandra — Beranda">D<span>.</span></a>
+      <nav class="main-nav" id="mainNav" aria-label="Navigasi utama">
+        <a href="#beranda" data-i18n="nav.beranda">Beranda</a>
+        <a href="#tentang" data-i18n="nav.tentang">Tentang</a>
+        <a href="#karya" data-i18n="nav.karya">Karya</a>
+        <a href="#layanan" data-i18n="nav.layanan">Layanan</a>
+        <a href="#testimoni" data-i18n="nav.testimoni">Testimoni</a>
+        <a href="#kontak" data-i18n="nav.kontak">Kontak</a>
+      </nav>
+      <div class="header-actions">
+        <button class="lang-toggle" id="langToggle" type="button" aria-label="Ganti bahasa / Switch language" aria-live="polite">
+          <span class="lang-opt" data-lang-opt="id">ID</span>
+          <span class="lang-sep">|</span>
+          <span class="lang-opt" data-lang-opt="en">EN</span>
+        </button>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ganti mode terang / gelap">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mainNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="beranda">
+      <div class="container hero-grid">
+        <div class="hero-text reveal">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Portofolio</p>
+          <h1 class="hero-title" data-i18n="hero.title">Halo, saya Diandra Oktansyah Satria Mandala</h1>
+          <p class="hero-role" data-i18n="hero.role">UI/UX Designer · Video Editor · Software Engineer</p>
+          <p class="hero-desc" data-i18n="hero.desc">Saya membantu brand dan bisnis tampil lebih baik melalui desain antarmuka yang intuitif, video yang memukau, dan solusi teknologi yang solid.</p>
+          <div class="hero-cta">
+            <a href="#karya" class="btn btn-primary" data-i18n="hero.cta1">Lihat Karya</a>
+            <a href="#kontak" class="btn btn-outline" data-i18n="hero.cta2">Hubungi Saya</a>
+          </div>
+          <div class="hero-social">
+            <a id="heroInstagram" href="https://instagram.com/diandra.osm" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+            </a>
+            <a id="heroGithub" href="https://github.com/d-okta" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12v3.14c0 .3.21.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+            </a>
+            <a id="heroEmail" href="mailto:diandra.oktansyah.s.m@gmail.com" aria-label="Email">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="hero-visual reveal" style="transition-delay:.12s">
+          <img class="hero-photo" src="foto%20profil.png" alt="Foto Diandra Oktansyah Satria Mandala" />
+        </div>
+      </div>
+      <div class="container">
+        <div class="stats reveal" id="statsRow" aria-label="Pencapaian"></div>
+      </div>
+    </section>
+
+    <!-- ===== Tentang ===== -->
+    <section class="section" id="tentang">
+      <div class="container about-grid">
+        <div class="reveal">
+          <p class="eyebrow" data-i18n="about.eyebrow">Profil</p>
+          <h2 data-i18n="about.title">Tentang Saya</h2>
+          <p class="section-desc" data-i18n="about.desc">Saya Diandra Oktansyah Satria Mandala, seorang pelajar yang fokus di UI/UX design, software engineering, dan video editing. Saya senang mengubah ide menjadi karya nyata — dari riset dan desain antarmuka, membangun aplikasi yang fungsional, hingga mengedit video yang bercerita.</p>
+          <p><a class="btn btn-outline" href="MY%20CV%20(1).pdf" target="_blank" rel="noopener" data-i18n="about.cv">Lihat CV</a></p>
+        </div>
+        <div class="reveal" style="transition-delay:.1s">
+          <h3 class="skills-label" data-i18n="about.skillsLabel">Keahlian</h3>
+          <ul class="chips" id="skillsList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Karya ===== -->
+    <section class="section section-alt" id="karya">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow" data-i18n="work.eyebrow">Portofolio</p>
+            <h2 data-i18n="work.title">Karya Terpilih</h2>
+          </div>
+          <p class="section-desc" data-i18n="work.subtitle">Beberapa proyek yang pernah saya kerjakan untuk klien &amp; tim.</p>
+        </div>
+        <div class="work-grid" id="workGrid"></div>
+        <p class="preview-note reveal" data-i18n="work.previewNote">Preview — gambar &amp; deskripsi karya masih placeholder dan akan diganti dari CV/portofolio asli.</p>
+      </div>
+    </section>
+
+    <!-- ===== Layanan ===== -->
+    <section class="section" id="layanan">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow" data-i18n="services.eyebrow">Apa yang saya tawarkan</p>
+            <h2 data-i18n="services.title">Layanan</h2>
+          </div>
+          <p class="section-desc" data-i18n="services.subtitle">Layanan yang saya tawarkan untuk mendukung kebutuhan Anda.</p>
+        </div>
+        <div class="services-grid" id="servicesGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== Proses ===== -->
+    <section class="section section-alt" id="proses">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow" data-i18n="proses.eyebrow">Alur kerja</p>
+            <h2 data-i18n="proses.title">Cara Saya Bekerja</h2>
+          </div>
+        </div>
+        <ol class="process-grid" id="processGrid"></ol>
+      </div>
+    </section>
+
+    <!-- ===== Testimoni ===== -->
+    <section class="section" id="testimoni">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow" data-i18n="testimoni.eyebrow">Social proof</p>
+            <h2 data-i18n="testimoni.title">Testimoni</h2>
+          </div>
+          <p class="section-desc" data-i18n="testimoni.subtitle">Apa kata klien yang pernah bekerja sama.</p>
+        </div>
+        <div class="testi-grid" id="testiGrid"></div>
+        <p class="preview-note reveal" data-i18n="testimoni.previewNote">Preview — testimoni masih contoh dan akan diganti dengan testimoni asli.</p>
+      </div>
+    </section>
+
+    <!-- ===== Harga ===== -->
+    <section class="section section-alt" id="harga">
+      <div class="container booking reveal">
+        <div>
+          <p class="eyebrow" data-i18n="harga.eyebrow">Mulai proyek</p>
+          <h2 data-i18n="harga.title">Paket &amp; Harga</h2>
+          <p class="section-desc" data-i18n="harga.subtitle">Ceritakan kebutuhan Anda — saya akan balas dengan estimasi &amp; jadwal.</p>
+        </div>
+        <div class="booking-actions">
+          <a class="btn btn-primary" id="bookingWa" href="https://wa.me/6283892120807?text=Halo%20Diandra%2C%20saya%20tertarik%20dengan%20layanan%20Anda." target="_blank" rel="noopener" data-i18n="harga.cta">Chat WhatsApp</a>
+          <a class="btn btn-outline" id="bookingMail" href="mailto:diandra.oktansyah.s.m@gmail.com?subject=Permintaan%20Layanan%20—%20Portofolio" data-i18n="harga.cta2">Kirim Email</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section" id="faq">
+      <div class="container faq-wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow" data-i18n="faq.eyebrow">Bantuan</p>
+            <h2 data-i18n="faq.title">Pertanyaan Umum</h2>
+          </div>
+        </div>
+        <div class="faq-list reveal" id="faqList"></div>
+      </div>
+    </section>
+
+    <!-- ===== Kontak ===== -->
+    <section class="section section-alt" id="kontak">
+      <div class="container contact-grid">
+        <div class="reveal">
+          <p class="eyebrow" data-i18n="contact.eyebrow">Kontak</p>
+          <h2 data-i18n="contact.title">Mari Berkolaborasi</h2>
+          <p class="section-desc" data-i18n="contact.desc">Punya proyek atau ide? Saya siap membantu. Hubungi saya lewat email atau pesan singkat.</p>
+          <p class="contact-email">
+            <a href="mailto:diandra.oktansyah.s.m@gmail.com">diandra.oktansyah.s.m@gmail.com</a>
+          </p>
+          <div class="contact-social">
+            <a href="https://instagram.com/diandra.osm" target="_blank" rel="noopener" class="social-pill">Instagram</a>
+            <a href="https://github.com/d-okta" target="_blank" rel="noopener" class="social-pill">GitHub</a>
+          </div>
+        </div>
+        <form class="contact-form reveal" id="contactForm" style="transition-delay:.1s">
+          <label>
+            <span data-i18n="contact.nameLabel">Nama</span>
+            <input type="text" id="cfName" name="name" autocomplete="name" required data-i18n-ph="contact.namePh" placeholder="Nama Anda" />
+          </label>
+          <label>
+            <span data-i18n="contact.msgLabel">Pesan</span>
+            <textarea id="cfMsg" name="message" rows="4" required data-i18n-ph="contact.msgPh" placeholder="Ceritakan proyek / kebutuhan Anda…"></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" data-i18n="contact.send">Kirim Pesan</button>
+            <a class="btn btn-outline" href="https://wa.me/6283892120807?text=Halo%20Diandra%2C%20saya%20tertarik%20dengan%20layanan%20Anda." target="_blank" rel="noopener" data-i18n="contact.wa">Chat WhatsApp</a>
+          </div>
+          <p class="form-hint" data-i18n="contact.hint">Form tanpa backend — tombol kirim membuka aplikasi email Anda.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p data-i18n="footer.text">© 2026 Diandra Oktansyah Satria Mandala. Dibuat dengan senang.</p>
+      <div class="footer-links">
+        <a href="https://instagram.com/diandra.osm" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://github.com/d-okta" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:diandra.oktansyah.s.m@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Modal karya ===== -->
+  <div class="modal-overlay" id="modalOverlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" id="modalBox">
+      <div class="modal-media" id="modalMedia" aria-hidden="true"></div>
+      <div class="modal-body">
+        <p class="modal-meta" id="modalMeta"></p>
+        <h3 id="modalTitle"></h3>
+        <p id="modalDesc"></p>
+        <button class="btn btn-outline modal-close" id="modalClose" type="button" data-i18n="work.close">Tutup</button>
+      </div>
+      <button class="modal-x" id="modalX" type="button" aria-label="Tutup detail karya">×</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

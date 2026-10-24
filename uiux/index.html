@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UI/UX, Diandra Oktansyah</title>
+  <meta name="description" content="Desain UI/UX oleh Diandra Oktansyah: magang di PT. Lain Group Digital, prototipe Figma, dan desain yang ia bangun sendiri.">
+  <meta property="og:title" content="UI/UX, Diandra Oktansyah">
+  <meta property="og:image" content="/og.jpg">
+  <meta name="theme-color" content="#F2F2EE">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/fonts/general-sans-600.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="/boot.js"></script>
+  <link rel="stylesheet" href="/src/styles.css">
+</head>
+<body data-page="uiux">
+<!--header:uiux-->
+<main id="main">
+  <section class="page-hero">
+    <span class="page-num" aria-hidden="true">02</span>
+    <h1 class="display" data-split>UI/UX</h1>
+    <p class="page-sub">
+      <span lang="id">Saya merancang di Figma lalu membangunnya sendiri, jadi desainnya selalu bisa dikerjakan.</span>
+      <span lang="en">I design in Figma and then build it myself, so the design always ships.</span>
+    </p>
+  </section>
+
+  <section class="block intern" aria-labelledby="intern-title">
+    <div class="intern-head">
+      <h2 id="intern-title" class="section-title" data-reveal>PT. Lain Group Digital</h2>
+      <p class="meta"><span lang="id">UI/UX Designer, magang, Februari-April 2026</span><span lang="en">UI/UX Designer, internship, February-April 2026</span></p>
+    </div>
+    <ol class="intern-steps">
+      <li><span lang="id">Merancang antarmuka website dari wireframe sampai prototipe interaktif di Figma.</span><span lang="en">Designed website interfaces from wireframes to interactive Figma prototypes.</span></li>
+      <li><span lang="id">Bekerja dengan tim developer supaya desain sesuai kebutuhan pengguna dan bisa dibangun.</span><span lang="en">Worked with the developer team so designs fit user needs and could be built.</span></li>
+      <li><span lang="id">Menyiapkan prototipe untuk presentasi ke klien.</span><span lang="en">Prepared prototypes for client presentations.</span></li>
+    </ol>
+  </section>
+
+  <section class="block variants" aria-labelledby="variants-title">
+    <h2 id="variants-title" class="section-title" data-reveal><span lang="id">Satu situs, tiga arah</span><span lang="en">One site, three directions</span></h2>
+    <p class="block-sub"><span lang="id">Web Cetak, situs percetakan. Saya buat tiga varian palet dan menguji masing-masing di desktop dan HP sebelum memilih.</span><span lang="en">Web Cetak, a print-shop site. I built three palette variants and reviewed each on desktop and phone before choosing.</span></p>
+    <div class="variant-tabs" role="tablist" aria-label="Varian">
+      <button role="tab" type="button" id="tab-mono" aria-controls="panel-mono" aria-selected="true">Monokrom</button>
+      <button role="tab" type="button" id="tab-emas" aria-controls="panel-emas" aria-selected="false" tabindex="-1"><span lang="id">Emas</span><span lang="en">Gold</span></button>
+      <button role="tab" type="button" id="tab-pink" aria-controls="panel-pink" aria-selected="false" tabindex="-1">Pink</button>
+    </div>
+    <div class="variant-stage">
+      <figure role="tabpanel" id="panel-mono" aria-labelledby="tab-mono"><img src="/img/cetak-monokrom.webp" alt="Beranda Web Cetak varian monokrom" loading="lazy" width="1600" height="1000"></figure>
+      <figure role="tabpanel" id="panel-emas" aria-labelledby="tab-emas" hidden><img src="/img/cetak-emas.webp" alt="Beranda Web Cetak varian emas" loading="lazy" width="1600" height="1000"></figure>
+      <figure role="tabpanel" id="panel-pink" aria-labelledby="tab-pink" hidden><img src="/img/cetak-pink.webp" alt="Beranda Web Cetak varian pink" loading="lazy" width="1600" height="1000"></figure>
+    </div>
+    <p><a class="btn btn-ghost" href="https://web-cetak-lovat.vercel.app" target="_blank" rel="noopener"><span lang="id">Buka situs</span><span lang="en">Open site</span></a></p>
+  </section>
+
+  <section class="block" aria-labelledby="design-title">
+    <h2 id="design-title" class="section-title" data-reveal><span lang="id">Dirancang dan dibangun</span><span lang="en">Designed and built</span></h2>
+    <div class="grid-uiux">
+<!--cards:uiux-->
+    </div>
+  </section>
+
+  <section class="block stack-block" aria-labelledby="tools-title">
+    <h2 id="tools-title" class="section-title" data-reveal><span lang="id">Alat</span><span lang="en">Tools</span></h2>
+    <p class="tools-line">Figma, Photoshop, Lightroom, Canva, Stitch</p>
+  </section>
+</main>
+<!--footer-->
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>

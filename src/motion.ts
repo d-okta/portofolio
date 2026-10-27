@@ -24,6 +24,7 @@ export function init() {
   fieldsStack();
   pageLinks(lenis);
   magnetic();
+  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: (s) => document.documentElement.style.setProperty('--sp', s.progress.toFixed(4)) });
   cursorLabel();
   if (home) {
     loadStage();

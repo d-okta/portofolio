@@ -108,10 +108,10 @@ body[data-page="home"] main, body[data-page="home"] .contact { position: relativ
   position: relative; min-height: calc(100dvh - 64px); padding: clamp(2rem, 6vw, 5rem) var(--pad) clamp(2rem, 5vw, 3.5rem);
   display: grid; align-items: end;
 }
-.hero-text { max-width: 900px; }
+.hero-text { max-width: none; }
 .hero-status { display: inline-flex; align-items: center; gap: .55rem; font-weight: 500; margin-bottom: 1.25rem; }
 .dot { width: .55rem; height: .55rem; border-radius: 50%; background: var(--accent); }
-.hero-title { font-size: clamp(3.5rem, 12.5vw, 12.5rem); }
+.hero-title { font-size: clamp(3.5rem, 10.5vw, 11rem); }
 .hero-sub { max-width: 34ch; font-size: clamp(1.125rem, 1.6vw, 1.375rem); line-height: 1.4; margin: 1.75rem 0 2rem; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: .75rem; }
 .hero-hint, .hero-scroll { position: absolute; font-size: .875rem; color: var(--muted); }
@@ -161,7 +161,8 @@ body[data-page="home"] main, body[data-page="home"] .contact { position: relativ
 .fields-track:not(.is-stacked) .field:is(:hover, :focus-visible) { background: var(--accent); color: var(--on-accent); }
 .fields-track:not(.is-stacked) .field:is(:hover, :focus-visible) :is(.field-num, p) { color: var(--on-accent); }
 .fields-track.is-stacked .field:is(:hover, :focus-visible) h3 { color: var(--accent); }
-.field:hover .field-media img { transform: scale(1.04); }
+.field-media, .slide-media, .card-media { transition: transform .8s var(--ease); }
+.field:hover .field-media, .slide-hit:hover .slide-media, .card-hit:is(:hover, :focus-visible) .card-media { transform: scale(1.04); }
 
 /* Saat di-pin (desktop, motion): tiga bidang ditumpuk satu layar */
 .fields-track.is-stacked { position: relative; height: calc(100dvh - 64px); overflow: hidden; }
@@ -179,7 +180,7 @@ body[data-page="home"] main, body[data-page="home"] .contact { position: relativ
 .card-media { overflow: hidden; aspect-ratio: 16 / 10; background: #E5E5E1; }
 .card-media img, .card-media video { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .8s var(--ease); }
 .card-media img[data-tall] { object-fit: contain; background: var(--ink); }
-.card-hit:hover .card-media img, .card-hit:focus-visible .card-media img { transform: scale(1.035); }
+
 .card-body { padding-top: 1rem; }
 .card-body h3 { font-size: 1.375rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
 .card-body p { margin-top: .35rem; }
@@ -202,7 +203,7 @@ body[data-page="home"] main, body[data-page="home"] .contact { position: relativ
 .slide-media { overflow: hidden; aspect-ratio: 16 / 10; background: var(--ink); }
 .slide-media img, .slide-media video { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 1s var(--ease); }
 .slide-media img[data-tall] { object-fit: contain; }
-.slide-hit:hover .slide-media img, .slide-hit:hover .slide-media video { transform: scale(1.04); }
+
 .slide-body { padding-top: 1rem; }
 .slide-field { font-size: .875rem; color: var(--muted); }
 .slide-body h3 { font-size: clamp(1.5rem, 2.6vw, 2.5rem); font-weight: 600; letter-spacing: -.03em; line-height: 1.05; margin: .25rem 0 .4rem; }
@@ -395,4 +396,14 @@ body[data-page="home"] main, body[data-page="home"] .contact { position: relativ
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+/* Latar: grid tipis + dua cahaya cobalt yang bergeser mengikuti scroll (--sp: 0..1) */
+.motion body::before {
+  content: ''; position: fixed; inset: -20vh -20vw; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(40vw 40vw at calc(20% + var(--sp, 0) * 60%) calc(30% + var(--sp, 0) * 40%), rgba(47, 75, 255, .10), transparent 70%),
+    radial-gradient(35vw 35vw at calc(85% - var(--sp, 0) * 70%) calc(80% - var(--sp, 0) * 50%), rgba(47, 75, 255, .07), transparent 70%),
+    linear-gradient(var(--line) 1px, transparent 1px) 0 calc(var(--sp, 0) * -800px) / 100% 120px;
+  opacity: .9;
 }

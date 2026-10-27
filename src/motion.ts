@@ -24,10 +24,10 @@ export function init() {
   fieldsStack();
   pageLinks(lenis);
   magnetic();
-  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: (s) => document.documentElement.style.setProperty('--sp', s.progress.toFixed(4)) });
   cursorLabel();
   if (home) {
     loadStage();
+    background();
     manifesto();
     featuredPan();
     timeline();
@@ -245,3 +245,11 @@ function pageLinks(lenis: Lenis) {
 }
 
 
+
+// Latar Beranda: gradien mesh WebGL. Gagal/WebGL tidak ada: latar polos tetap.
+function background() {
+  const c = document.createElement('canvas');
+  c.className = 'bg'; c.setAttribute('aria-hidden', 'true');
+  document.body.prepend(c);
+  import('./bg').then((b) => b.start(c)).catch(() => c.remove());
+}

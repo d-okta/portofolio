@@ -17,81 +17,132 @@
   <link rel="stylesheet" href="/src/styles.css">
 </head>
 <body data-page="home">
+<div class="loader" aria-hidden="true">
+  <div class="loader-name"><span>Diandra</span><span>Oktansyah</span></div>
+  <div class="loader-bar"><span></span></div>
+</div>
+<canvas class="stage" aria-hidden="true"></canvas>
 <!--header:home-->
 <main id="main">
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-text">
-      <h1 id="hero-title" class="display" data-split>Diandra<br>Oktansyah</h1>
+      <p class="hero-status"><span class="dot" aria-hidden="true"></span><span lang="id">Terbuka untuk freelance</span><span lang="en">Available for freelance</span></p>
+      <h1 id="hero-title" class="display hero-title" data-split>Diandra<br>Oktansyah</h1>
       <p class="hero-sub">
         <span lang="id">Saya membangun website, aplikasi, dan game, lalu merekam dan menyunting cerita di baliknya.</span>
         <span lang="en">I build websites, apps, and games, then film and edit the stories around them.</span>
       </p>
       <div class="hero-cta">
-        <a class="btn btn-accent" href="#karya"><span lang="id">Lihat karya</span><span lang="en">See the work</span></a>
-        <a class="btn btn-ghost" href="#kontak"><span lang="id">Kontak</span><span lang="en">Contact</span></a>
+        <a class="btn btn-accent" href="#karya" data-magnetic><span class="roll"><span lang="id">Lihat karya</span><span lang="en">See the work</span></span></a>
+        <a class="btn btn-ghost" href="#kontak" data-magnetic><span class="roll"><span lang="id">Kontak</span><span lang="en">Contact</span></span></a>
       </div>
     </div>
-    <figure class="hero-portrait" data-reveal-clip>
-      <img src="/img/portrait-1120.webp" srcset="/img/portrait-640.webp 640w, /img/portrait-1120.webp 1122w" sizes="(min-width: 900px) 34vw, 80vw" width="1122" height="1402" alt="Foto Diandra Oktansyah memakai jas hitam dan kacamata" fetchpriority="high">
-      <figcaption>Surabaya, <span lang="id">pelajar RPL SMKN 10</span><span lang="en">software engineering student, SMKN 10</span></figcaption>
-    </figure>
-    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <p class="hero-hint" aria-hidden="true"><span lang="id">Gerakkan kursor ke objek, klik untuk menekan</span><span lang="en">Move your cursor to the object, click to press it</span></p>
+    <p class="hero-scroll" aria-hidden="true">Scroll</p>
+  </section>
+
+  <section class="manifesto" aria-label="Cara kerja">
+    <p class="manifesto-text" data-fill>
+      <span lang="id">Saya menulis kode, merancang antarmuka, dan menyunting video. Tiga bidang dengan satu kebiasaan: mengerjakannya sampai benar-benar bisa dipakai orang.</span>
+      <span lang="en">I write code, design interfaces, and edit video. Three disciplines, one habit: working on it until people can actually use it.</span>
+    </p>
   </section>
 
   <section class="fields" aria-labelledby="fields-title">
     <h2 id="fields-title" class="sr-only"><span lang="id">Tiga bidang</span><span lang="en">Three disciplines</span></h2>
     <div class="fields-track">
-      <a class="field" href="/programming/" data-curtain="Programming">
+      <a class="field" href="/programming/" data-curtain="Programming" data-cursor="Buka|Open">
         <span class="field-num" aria-hidden="true">01</span>
         <div class="field-copy">
           <h3>Programming</h3>
           <p><span lang="id">Website untuk penerbit, yayasan, dan sekolah. Aplikasi kasir di Google Play. Game Android dari Canvas murni sampai Godot.</span><span lang="en">Websites for publishers, foundations, and schools. POS apps on Google Play. Android games from raw Canvas to Godot.</span></p>
+          <p class="field-count"><!--count:web--> web / <!--count:app--> <span lang="id">aplikasi</span><span lang="en">apps</span> / <!--count:game--> game</p>
           <span class="field-go"><span lang="id">Buka Programming</span><span lang="en">Open Programming</span></span>
         </div>
         <figure class="field-media"><img src="/img/sgn.webp" alt="" loading="lazy" width="1366" height="850"></figure>
       </a>
-      <a class="field" href="/uiux/" data-curtain="UI/UX">
+      <a class="field" href="/uiux/" data-curtain="UI/UX" data-cursor="Buka|Open">
         <span class="field-num" aria-hidden="true">02</span>
         <div class="field-copy">
           <h3>UI/UX</h3>
           <p><span lang="id">Magang UI/UX di PT. Lain Group Digital. Wireframe sampai prototipe di Figma, lalu saya bangun sendiri.</span><span lang="en">UI/UX intern at PT. Lain Group Digital. Wireframes to Figma prototypes, then I build them myself.</span></p>
+          <p class="field-count">Figma / Stitch / Photoshop</p>
           <span class="field-go"><span lang="id">Buka UI/UX</span><span lang="en">Open UI/UX</span></span>
         </div>
         <figure class="field-media"><img src="/img/cetak-monokrom.webp" alt="" loading="lazy" width="1600" height="1000"></figure>
       </a>
-      <a class="field" href="/video/" data-curtain="Video">
+      <a class="field" href="/video/" data-curtain="Video" data-cursor="Buka|Open">
         <span class="field-num" aria-hidden="true">03</span>
         <div class="field-copy">
           <h3>Video</h3>
           <p><span lang="id">Editor utama Series Wani Piro dan koordinator tim kreatif Black Broadcast. Aftermovie acara sekolah dan perusahaan.</span><span lang="en">Lead editor at Series Wani Piro and creative coordinator at Black Broadcast. Aftermovies for school and corporate events.</span></p>
+          <p class="field-count"><!--count:video--> aftermovie</p>
           <span class="field-go"><span lang="id">Buka Video</span><span lang="en">Open Video</span></span>
         </div>
-        <figure class="field-media"><img src="/video/pelindo.webp" alt="" loading="lazy" width="1280" height="720"></figure>
+        <figure class="field-media"><video src="/video/pelindo.mp4" poster="/video/pelindo.webp" muted loop playsinline preload="none" aria-hidden="true"></video></figure>
       </a>
     </div>
   </section>
 
   <section class="featured" id="karya" aria-labelledby="karya-title">
-    <h2 id="karya-title" class="section-title" data-reveal><span lang="id">Karya pilihan</span><span lang="en">Selected work</span></h2>
-    <div class="featured-grid">
+    <div class="featured-pin">
+      <div class="featured-head">
+        <h2 id="karya-title" class="section-title"><span lang="id">Karya pilihan</span><span lang="en">Selected work</span></h2>
+        <p class="featured-progress" aria-hidden="true"><span class="fp-now">01</span> / 06</p>
+      </div>
+      <div class="featured-track">
 <!--featured-->
+      </div>
     </div>
   </section>
 
+  <section class="marquee" aria-label="Semua proyek">
+<!--marquee-->
+    <p class="marquee-cta"><a href="/programming/" data-curtain="Programming"><span lang="id">Lihat semua proyek</span><span lang="en">See every project</span></a></p>
+  </section>
+
+  <section class="stack-explorer" aria-labelledby="stack-title">
+    <div class="se-head">
+      <h2 id="stack-title" class="section-title" data-reveal><span lang="id">Alat yang saya pakai</span><span lang="en">Tools I use</span></h2>
+      <p class="block-sub"><span lang="id">Pilih alat untuk melihat proyek yang dibangun dengannya.</span><span lang="en">Pick a tool to see the projects built with it.</span></p>
+    </div>
+    <div class="tool-groups">
+<!--stack-->
+    </div>
+  </section>
+
+  <section class="timeline" aria-labelledby="tl-title">
+    <h2 id="tl-title" class="section-title" data-reveal><span lang="id">Perjalanan</span><span lang="en">Path so far</span></h2>
+    <ol class="tl-list">
+      <li><time>2024</time><div><h3><span lang="id">Masuk SMK Negeri 10 Surabaya</span><span lang="en">Started at SMK Negeri 10 Surabaya</span></h3><p><span lang="id">Jurusan Rekayasa Perangkat Lunak.</span><span lang="en">Software Engineering program.</span></p></div></li>
+      <li><time>2025</time><div><h3>Black Broadcast, Pekan Picture, Japan Sekai</h3><p><span lang="id">Koordinator tim kreatif, editor video, dan tim dokumentasi.</span><span lang="en">Creative team coordinator, video editor, and documentation team.</span></p></div></li>
+      <li><time>2026</time><div><h3><span lang="id">Magang UI/UX di PT. Lain Group Digital</span><span lang="en">UI/UX internship at PT. Lain Group Digital</span></h3><p><span lang="id">Februari sampai April. Wireframe sampai prototipe di Figma.</span><span lang="en">February to April. Wireframes to Figma prototypes.</span></p></div></li>
+      <li><time>2026</time><div><h3><span lang="id">Editor utama Series Wani Piro</span><span lang="en">Lead editor, Series Wani Piro</span></h3><p><span lang="id">Mulai Maret, memegang seluruh alur editing.</span><span lang="en">Since March, owning the whole editing pipeline.</span></p></div></li>
+      <li><time>2026</time><div><h3><span lang="id">Game dan aplikasi rilis di Google Play</span><span lang="en">Games and apps released on Google Play</span></h3><p><span lang="id">WarungKu POS dan variannya, Jinn Chase, Momentum, Serangan Fajar 1947, Balung Wesi.</span><span lang="en">WarungKu POS and its variants, Jinn Chase, Momentum, Serangan Fajar 1947, Balung Wesi.</span></p></div></li>
+      <li class="tl-next"><time>2027</time><div><h3><span lang="id">Lulus, terbuka untuk proyek</span><span lang="en">Graduating, open for projects</span></h3><p><span lang="id">Sementara itu, saya menerima pekerjaan freelance.</span><span lang="en">Meanwhile, I take freelance work.</span></p></div></li>
+    </ol>
+  </section>
+
   <section class="about" aria-labelledby="about-title">
-    <h2 id="about-title" class="sr-only"><span lang="id">Tentang saya</span><span lang="en">About me</span></h2>
-    <p class="about-lead" data-reveal>
-      <span lang="id">Saya pelajar kelas 12 Rekayasa Perangkat Lunak di SMK Negeri 10 Surabaya dan akan lulus tahun ini. Selama sekolah saya membuat website dan aplikasi untuk klien nyata, sebagian besar saya kerjakan sendiri. Di luar kode, saya aktif di dunia broadcasting sebagai editor dan koordinator tim kreatif.</span>
-      <span lang="en">I'm a final-year Software Engineering student at SMK Negeri 10 Surabaya, graduating this year. I've built websites and apps for real clients, mostly on my own. Outside code, I work in broadcasting as an editor and creative team coordinator.</span>
-    </p>
-    <dl class="about-facts">
-      <div><dt><span lang="id">Pendidikan</span><span lang="en">Education</span></dt><dd>SMK Negeri 10 Surabaya, RPL, 2024-2027</dd></div>
-      <div><dt><span lang="id">Magang</span><span lang="en">Internship</span></dt><dd>PT. Lain Group Digital, UI/UX, Feb-Apr 2026</dd></div>
-      <div><dt><span lang="id">Status</span><span lang="en">Status</span></dt><dd><span lang="id">Terbuka untuk freelance</span><span lang="en">Available for freelance</span></dd></div>
-    </dl>
+    <figure class="about-portrait" data-reveal-clip>
+      <img src="/img/portrait-1120.webp" srcset="/img/portrait-640.webp 640w, /img/portrait-1120.webp 1122w" sizes="(min-width: 900px) 30vw, 80vw" width="1122" height="1402" alt="Foto Diandra Oktansyah memakai jas hitam dan kacamata" loading="lazy">
+    </figure>
+    <div class="about-copy">
+      <h2 id="about-title" class="section-title" data-reveal><span lang="id">Tentang saya</span><span lang="en">About me</span></h2>
+      <p class="about-lead" data-reveal>
+        <span lang="id">Saya pelajar kelas 12 Rekayasa Perangkat Lunak di SMK Negeri 10 Surabaya dan akan lulus tahun ini. Selama sekolah saya membuat website dan aplikasi untuk klien nyata, sebagian besar saya kerjakan sendiri. Di luar kode, saya aktif di dunia broadcasting sebagai editor dan koordinator tim kreatif.</span>
+        <span lang="en">I'm a final-year Software Engineering student at SMK Negeri 10 Surabaya, graduating this year. I've built websites and apps for real clients, mostly on my own. Outside code, I work in broadcasting as an editor and creative team coordinator.</span>
+      </p>
+      <dl class="about-facts">
+        <div><dt><span lang="id">Pendidikan</span><span lang="en">Education</span></dt><dd>SMK Negeri 10 Surabaya, RPL, 2024-2027</dd></div>
+        <div><dt><span lang="id">Magang</span><span lang="en">Internship</span></dt><dd>PT. Lain Group Digital, UI/UX, Feb-Apr 2026</dd></div>
+        <div><dt><span lang="id">Lokasi</span><span lang="en">Location</span></dt><dd>Surabaya, Jawa Timur</dd></div>
+      </dl>
+    </div>
   </section>
 </main>
 <!--footer-->
+<div class="cursor-label" aria-hidden="true"></div>
 <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

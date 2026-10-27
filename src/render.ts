@@ -68,6 +68,66 @@ export function videoCard(p: Project, cls = '') {
 
 const of = (f: Field) => projects.filter((p) => p.fields.includes(f));
 
+const fieldName: Record<Field, L> = {
+  web: { id: 'Web', en: 'Web' }, app: { id: 'Aplikasi', en: 'App' }, game: { id: 'Game', en: 'Game' },
+  uiux: { id: 'UI/UX', en: 'UI/UX' }, video: { id: 'Video', en: 'Video' },
+};
+
+// Karya pilihan sebagai panel horizontal (di-pin & digeser saat scroll di desktop, daftar biasa di mobile).
+function slide(p: Project, i: number) {
+  const n = String(i + 1).padStart(2, '0');
+  const visual = p.video
+    ? `<video src="/video/${p.video}.mp4" poster="/video/${p.video}.webp" muted loop playsinline preload="none" aria-label="Cuplikan ${esc(p.title)}"></video>`
+    : p.img
+      ? `<img src="/img/${p.img}.webp" alt="" loading="lazy" decoding="async" width="1600" height="1000"${p.tall ? ' data-tall' : ''}>`
+      : `<div class="card-type" aria-hidden="true">${esc(p.title)}</div>`;
+  const open = p.video ? `href="/video/"` : `href="#d-${p.id}" data-open="d-${p.id}" aria-haspopup="dialog"`;
+  return `<article class="slide">
+  <a class="slide-hit" ${open} data-cursor="${p.video ? 'Tonton|Watch' : 'Buka|Open'}">
+    <span class="slide-num" aria-hidden="true">${n}</span>
+    <figure class="slide-media">${visual}</figure>
+    <div class="slide-body">
+      <p class="slide-field">${t(fieldName[p.fields[0]])}</p>
+      <h3>${esc(p.title)}</h3>
+      <p>${t(p.summary)}</p>
+    </div>
+  </a>
+  ${p.video ? '' : dialog(p)}
+</article>`;
+}
+
+// Stack: nama alat -> proyek yang memakainya (dihitung dari data, bukan angka karangan).
+const STACK_GROUPS: { name: L; tools: string[] }[] = [
+  { name: { id: 'Web', en: 'Web' }, tools: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Three.js', 'Supabase', 'Node.js'] },
+  { name: { id: 'Aplikasi & game', en: 'Apps & games' }, tools: ['Flutter', 'Electron', 'Tauri', 'Kotlin', 'Java', 'Godot', 'Phaser', 'Python'] },
+  { name: { id: 'Desain & video', en: 'Design & video' }, tools: ['Figma', 'Photoshop', 'Lightroom', 'Premiere Pro', 'DaVinci Resolve', 'CapCut'] },
+];
+const NON_CODE: Record<string, L> = {
+  Figma: { id: 'Magang UI/UX, Web Cetak', en: 'UI/UX internship, Web Cetak' },
+  Photoshop: { id: 'Desain feed Black Broadcast', en: 'Black Broadcast feed design' },
+  Lightroom: { id: 'Foto dokumentasi acara', en: 'Event photography' },
+  'Premiere Pro': { id: '5 aftermovie di halaman Video', en: '5 aftermovies on the Video page' },
+  'DaVinci Resolve': { id: 'Penyuntingan dan grading', en: 'Editing and grading' },
+  CapCut: { id: 'Konten pendek komunitas', en: 'Short community content' },
+};
+
+function stackExplorer() {
+  const groups = STACK_GROUPS.map((g) => {
+    const items = g.tools.map((tool) => {
+      const used = projects.filter((p) => p.stack.includes(tool)).map((p) => p.title);
+      const note = used.length ? esc(used.slice(0, 4).join(', ') + (used.length > 4 ? ` +${used.length - 4}` : '')) : NON_CODE[tool] ? t(NON_CODE[tool]) : '';
+      return `<li><button type="button" class="tool" aria-pressed="false" data-tool="${esc(tool)}"><span class="tool-name">${esc(tool)}</span><span class="tool-use">${note}</span></button></li>`;
+    }).join('');
+    return `<div class="tool-group"><h3>${t(g.name)}</h3><ul>${items}</ul></div>`;
+  }).join('');
+  return groups;
+}
+
+function marquee() {
+  const names = projects.filter((p) => !p.video).map((p) => `<span>${esc(p.title)}</span>`).join('<span aria-hidden="true">/</span>');
+  return `<div class="marquee-track"><div class="marquee-row">${names}</div><div class="marquee-row" aria-hidden="true">${names}</div></div>`;
+}
+
 const EMAIL = 'diandra.oktansyah.s.m@gmail.com';
 const pages = [
   { key: 'programming', href: '/programming/', label: 'Programming' },
@@ -117,13 +177,14 @@ export const blocks: Record<string, () => string> = {
   'cards:game': () => of('game').map((p) => card(p, 'card-fit')).join('\n'),
   'cards:uiux': () => of('uiux').filter((p) => p.id !== 'web-cetak').map((p) => card(p)).join('\n'),
   'cards:video': () => of('video').map((p, i) => videoCard(p, i < 2 ? 'card-lg' : '')).join('\n'),
-  featured: () =>
-    [
-      ...featured.map((id, i) => card(byId(id), `f-${i + 1}`)),
-      // ponytail: 2 video sementara (versi final); ganti ID di sini setelah pemilik memilih.
-      videoCard(byId('v-xploration'), 'f-5'),
-      videoCard(byId('v-good-day'), 'f-6'),
-    ].join('\n'),
+  // ponytail: 2 video sementara (versi final); ganti ID di sini setelah pemilik memilih.
+  featured: () => [...featured, 'v-xploration', 'v-good-day'].map((id, i) => slide(byId(id), i)).join('\n'),
+  stack: stackExplorer,
+  marquee,
+  'count:web': () => String(of('web').length),
+  'count:app': () => String(of('app').length),
+  'count:game': () => String(of('game').length),
+  'count:video': () => String(of('video').length),
 };
 
 export function renderHtml(html: string) {

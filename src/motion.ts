@@ -16,15 +16,147 @@ export function init() {
   addEventListener('dialogopen', () => lenis.stop());
   addEventListener('dialogclose', () => lenis.start());
 
-  curtainIn();
-  revealTitles();
-  revealClips();
+  const home = document.body.dataset.page === 'home';
+  const intro = home ? preloader(lenis) : Promise.resolve();
+  if (!home) curtainIn();
+  intro.then(() => { revealTitles(); revealClips(); });
   parallax();
   fieldsStack();
   pageLinks(lenis);
-  if (document.body.dataset.page === 'home') loadHero();
+  magnetic();
+  cursorLabel();
+  if (home) {
+    loadStage();
+    manifesto();
+    featuredPan();
+    timeline();
+  }
 
-  addEventListener('langchange', () => ScrollTrigger.refresh());
+  addEventListener('langchange', () => { if (home) manifesto(); ScrollTrigger.refresh(); });
+}
+
+// ---------- Beranda ----------
+
+// Preloader: nama + bilah kemajuan (font & gambar hero). Hanya di kunjungan pertama per sesi,
+// berikutnya diganti tirai pendek supaya tidak mengganggu.
+function preloader(lenis: Lenis): Promise<void> {
+  const el = document.querySelector<HTMLElement>('.loader');
+  const seen = sessionStorage.getItem('seen');
+  if (!el || seen || sessionStorage.getItem('curtain') !== null) {
+    el?.remove();
+    curtainIn();
+    return Promise.resolve();
+  }
+  sessionStorage.setItem('seen', '1');
+  lenis.stop();
+  const bar = el.querySelector('.loader-bar span')!;
+  const names = el.querySelectorAll('.loader-name span');
+  gsap.from(names, { yPercent: 100, duration: 1, ease, stagger: 0.08 });
+  const ready = Promise.all([document.fonts.ready, new Promise((r) => (document.readyState === 'complete' ? r(0) : addEventListener('load', r, { once: true })))]);
+  const min = new Promise((r) => setTimeout(r, 1100));
+  gsap.to(bar, { scaleX: 0.85, duration: 1.1, ease: 'power2.out' });
+  return Promise.all([ready, min]).then(() => new Promise<void>((done) => {
+    gsap.timeline({ onComplete: () => { el.remove(); lenis.start(); } })
+      .to(bar, { scaleX: 1, duration: 0.3 })
+      .to(el, { yPercent: -100, duration: 1, ease: 'expo.inOut' })
+      .add(done, '-=0.55');
+  }));
+}
+
+// Manifesto: kata terisi satu per satu mengikuti scroll (membaca sambil menggulir).
+let manifestoST: ScrollTrigger | undefined;
+function manifesto() {
+  const p = document.querySelector<HTMLElement>('[data-fill]');
+  if (!p) return;
+  manifestoST?.kill();
+  const span = p.querySelector<HTMLElement>(`[lang="${document.documentElement.lang}"]`)!;
+  if (!span.dataset.words) {
+    span.innerHTML = span.textContent!.trim().split(/\s+/).map((w) => `<span class="word">${w}</span>`).join(' ');
+    span.dataset.words = '1';
+  }
+  const words = span.querySelectorAll('.word');
+  gsap.set(words, { opacity: 0.14 });
+  manifestoST = gsap.to(words, {
+    opacity: 1, stagger: 0.1, ease: 'none',
+    scrollTrigger: { trigger: p, start: 'top 75%', end: 'bottom 45%', scrub: true },
+  }).scrollTrigger;
+}
+
+// Karya pilihan: panel di-pin lalu digeser ke samping; penghitung 01/06 ikut berubah.
+function featuredPan() {
+  const pin = document.querySelector<HTMLElement>('.featured-pin');
+  const track = pin?.querySelector<HTMLElement>('.featured-track');
+  if (!pin || !track) return;
+  const now = pin.querySelector('.fp-now')!;
+  const slides = gsap.utils.toArray<HTMLElement>('.slide', track);
+  gsap.matchMedia().add('(min-width: 901px)', () => {
+    pin.classList.add('is-pinned');
+    const dist = () => track.scrollWidth - innerWidth;
+    gsap.to(track, {
+      x: () => -dist(), ease: 'none',
+      scrollTrigger: {
+        trigger: pin, start: 'top 64px', end: () => `+=${dist()}`, pin: true, scrub: 0.8, invalidateOnRefresh: true,
+        onUpdate: (s) => { now.textContent = String(Math.min(slides.length, Math.round(s.progress * (slides.length - 1)) + 1)).padStart(2, '0'); },
+      },
+    });
+    return () => pin.classList.remove('is-pinned');
+  });
+}
+
+// Linimasa: garis cobalt tumbuh mengikuti posisi baca.
+function timeline() {
+  const list = document.querySelector<HTMLElement>('.tl-list');
+  if (!list) return;
+  gsap.fromTo(list, { '--tl': 0 }, { '--tl': 1, ease: 'none', scrollTrigger: { trigger: list, start: 'top 70%', end: 'bottom 70%', scrub: true } });
+  for (const li of list.children) {
+    gsap.from(li, { x: -24, opacity: 0, duration: 1, ease, scrollTrigger: { trigger: li, start: 'top 85%', once: true } });
+  }
+}
+
+// ---------- Detail mikro (hanya pointer presisi: mouse/trackpad) ----------
+const fine = () => matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+// Tombol utama sedikit tertarik ke kursor: memberi tanda bisa diklik.
+function magnetic() {
+  if (!fine()) return;
+  for (const el of $$('[data-magnetic]')) {
+    const x = gsap.quickTo(el, 'x', { duration: 0.6, ease: 'power3' });
+    const y = gsap.quickTo(el, 'y', { duration: 0.6, ease: 'power3' });
+    el.addEventListener('pointermove', (e) => {
+      const r = el.getBoundingClientRect();
+      x((e.clientX - r.left - r.width / 2) * 0.3);
+      y((e.clientY - r.top - r.height / 2) * 0.3);
+    });
+    el.addEventListener('pointerleave', () => { x(0); y(0); });
+  }
+}
+
+// Label mengikuti kursor di atas kartu/bidang: memberi tahu aksi klik ("Buka", "Tonton").
+function cursorLabel() {
+  const label = document.querySelector<HTMLElement>('.cursor-label');
+  if (!label || !fine()) return;
+  const x = gsap.quickTo(label, 'x', { duration: 0.35, ease: 'power3' });
+  const y = gsap.quickTo(label, 'y', { duration: 0.35, ease: 'power3' });
+  addEventListener('pointermove', (e) => { x(e.clientX); y(e.clientY); }, { passive: true });
+  for (const el of $$('[data-cursor]')) {
+    el.addEventListener('pointerenter', () => {
+      const [id, en] = el.dataset.cursor!.split('|');
+      label.textContent = document.documentElement.lang === 'en' ? en : id;
+      gsap.to(label, { scale: 1, autoAlpha: 1, duration: 0.35, ease: 'back.out(2)' });
+    });
+    el.addEventListener('pointerleave', () => gsap.to(label, { scale: 0, autoAlpha: 0, duration: 0.25 }));
+  }
+}
+
+// Stage 3D: hanya bila WebGL2 ada. Jika gagal, hero tetap utuh (teks saja).
+function loadStage() {
+  const canvas = document.querySelector<HTMLCanvasElement>('.stage');
+  if (!canvas || !document.createElement('canvas').getContext('webgl2')) {
+    canvas?.remove();
+    document.documentElement.classList.add('no-stage');
+    return;
+  }
+  import('./stage3d').then((m) => m.start(canvas)).catch(() => { canvas.remove(); document.documentElement.classList.add('no-stage'); });
 }
 
 // Judul utama: terbuka per baris. Hierarki: nama halaman muncul pertama.
@@ -111,11 +243,4 @@ function pageLinks(lenis: Lenis) {
   addEventListener('pageshow', (e) => { if (e.persisted) { gsap.set(curtain(), { visibility: 'hidden' }); lenis.start(); } });
 }
 
-// ---------- Hero 3D: dimuat setelah halaman siap dan hanya jika WebGL tersedia ----------
-function loadHero() {
-  const canvas = document.querySelector<HTMLCanvasElement>('.hero-canvas');
-  // ponytail: HP tidak memuat 3D (hemat baterai & data, ruang hero sempit). Tambah versi kecil bila diminta.
-  if (!canvas || !matchMedia('(min-width: 901px)').matches || !document.createElement('canvas').getContext('webgl2')) { canvas?.remove(); return; }
-  const go = () => import('./hero3d').then((m) => m.start(canvas)).catch(() => canvas.remove());
-  if (document.readyState === 'complete') go(); else addEventListener('load', go, { once: true });
-}
+

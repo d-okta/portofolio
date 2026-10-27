@@ -89,5 +89,23 @@ tabs.forEach((t, i) => {
   });
 });
 
+// ---------- Penjelajah stack: satu alat aktif, tampilkan proyeknya ----------
+const tools = $$<HTMLButtonElement>('.tool');
+for (const b of tools) {
+  b.addEventListener('click', () => {
+    const on = b.getAttribute('aria-pressed') !== 'true';
+    tools.forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)));
+  });
+}
+
+// ---------- Teks bergulir di tombol: gandakan isi (berfungsi di kedua bahasa) ----------
+for (const r of $$('.roll')) {
+  const a = document.createElement('span'); a.className = 'roll-a';
+  const b = document.createElement('span'); b.className = 'roll-b'; b.setAttribute('aria-hidden', 'true');
+  a.append(...r.childNodes);
+  b.append(...[...a.childNodes].map((n) => n.cloneNode(true)));
+  r.append(a, b);
+}
+
 // ---------- Gerak ----------
 if (motion) import('./motion').then((m) => m.init());
